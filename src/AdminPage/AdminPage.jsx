@@ -4,7 +4,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { authenticationService } from '@/_services';
 
-const currentUser = authenticationService.currentUserValue;//Logged User
+let currentUser = authenticationService.currentUserValue;
 let editedUser = {};
 
 class AdminPage extends React.Component {
@@ -61,6 +61,7 @@ class AdminPage extends React.Component {
 
     componentDidMount() {//Get the users
         userService.getAll().then(users => this.setState({ users }));
+        currentUser = authenticationService.currentUserValue;//Logged User
     }
 
     render() {
